@@ -15,7 +15,13 @@ class TodosController < ApplicationController
 
   # POST /todos
   def create
-    @todo = Todo.new(todo_params)
+    @catefory = Catefory.find_by_id(params[:catefory_id])
+
+    unless @catefory.nil?
+      @todo = @catefory.todos.new(todo_params);
+    else 
+      @todo = Todo.new(todo_params)
+    end
 
     if @todo.save
       render json: @todo, status: :created, location: @todo
@@ -46,6 +52,6 @@ class TodosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def todo_params
-      params.require(:todo).permit(:name, :status)
+      params.require(:todo).permit(:name, :status, :catefory_id)
     end
 end
