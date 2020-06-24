@@ -54,3 +54,6 @@ class CateforiesController < ApplicationController
       params.require(:catefory).permit(:name)
     end
 end
+
+
+# Hoc
