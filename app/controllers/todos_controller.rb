@@ -15,8 +15,8 @@ class TodosController < ApplicationController
 
   # POST /todos
   def create
-    @catefory = Catefory.find_by_id(params[:catefory_id])
-
+    byebug
+    @catefory = Catefory.find_by_id(params[:category_id])
     unless @catefory.nil?
       @todo = @catefory.todos.new(todo_params);
     else 
@@ -52,6 +52,6 @@ class TodosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def todo_params
-      params.require(:todo).permit(:name, :status, :catefory_id)
+      params.require(:todo).permit(:name, :status, :category_id)
     end
 end

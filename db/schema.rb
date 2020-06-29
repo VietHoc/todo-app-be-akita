@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_17_043453) do
+ActiveRecord::Schema.define(version: 2020_06_29_081431) do
+
+# Could not dump table "categories" because of following StandardError
+#   Unknown type 'reference' for column 'category'
 
   create_table "todos", force: :cascade do |t|
     t.string "name"
