@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :update, :destroy]
+  before_action :set_category, only: [:show, :update, :destroy, ]
+  before_action :set_category_todo, only: [:get_todos_by_category]
 
   # GET /categories
   def index
@@ -38,10 +39,21 @@ class CategoriesController < ApplicationController
     @category.destroy
   end
 
+  def get_todos_by_category
+    Category.all.each do |category|
+      puts category.todos
+    end
+    render json: @category.todos
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
+    end
+
+    def set_category_todo
+      @category = Category.find(params[:category_id])
     end
 
     # Only allow a trusted parameter "white list" through.

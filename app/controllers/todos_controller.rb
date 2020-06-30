@@ -15,13 +15,7 @@ class TodosController < ApplicationController
 
   # POST /todos
   def create
-    byebug
-    @catefory = Catefory.find_by_id(params[:category_id])
-    unless @catefory.nil?
-      @todo = @catefory.todos.new(todo_params);
-    else 
-      @todo = Todo.new(todo_params)
-    end
+    @todo = Todo.new(todo_params)
 
     if @todo.save
       render json: @todo, status: :created, location: @todo
